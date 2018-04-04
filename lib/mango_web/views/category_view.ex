@@ -3,8 +3,8 @@ defmodule MangoWeb.CategoryView do
 
   def title_case(string) do
     string
-    |> String.downcase
-    |> String.split
+    |> String.downcase()
+    |> String.split()
     |> Enum.map(&String.capitalize/1)
     |> Enum.join(" ")
   end

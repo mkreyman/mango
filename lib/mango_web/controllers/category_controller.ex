@@ -4,7 +4,7 @@ defmodule MangoWeb.CategoryController do
 
   def show(conn, %{"name" => name}) do
     products = Catalog.get_category_products(name)
-    
+
     conn
     |> assign(:products, products)
     |> assign(:name, name)
