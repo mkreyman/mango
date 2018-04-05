@@ -5,12 +5,12 @@ defmodule Mango.CRM.Customer do
   alias Mango.CRM.Customer
 
   schema "customers" do
-    field :email, :string
-    field :name, :string
-    field :password, :string, virtual: true
-    field :password_hash, :string
-    field :phone, :string
-    field :residence_area, :string
+    field(:email, :string)
+    field(:name, :string)
+    field(:password, :string, virtual: true)
+    field(:password_hash, :string)
+    field(:phone, :string)
+    field(:residence_area, :string)
 
     timestamps()
   end
@@ -25,12 +25,13 @@ defmodule Mango.CRM.Customer do
     |> unique_constraint(:email)
     |> put_hashed_password
   end
-  
+
   defp put_hashed_password(changeset) do
     case changeset.valid? do
       true ->
         changes = changeset.changes
         put_change(changeset, :password_hash, hashpwsalt(changes.password))
+
       _ ->
         changeset
     end
