@@ -33,9 +33,9 @@ defmodule MangoWeb.CheckoutController do
     customer = conn.assigns.current_customer
 
     params
-    |> Map.put("customer_id", customer.id)
-    |> Map.put("customer_name", customer.name)
-    |> Map.put("residence_area", customer.residence_area)
-    |> Map.put("email", customer.email)
+    |> Map.put(:customer_id, customer.id)
+    |> Map.put(:customer_name, customer.name)
+    |> Map.put(:residence_area, customer.residence_area)
+    |> Map.put(:email, customer.email)
   end
 end

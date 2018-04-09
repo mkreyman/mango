@@ -1,7 +1,9 @@
 defmodule Mango.Sales.Order do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
   alias Mango.Sales.{Order, LineItem}
+  alias Mango.Repo
 
   schema "orders" do
     embeds_many(:line_items, LineItem, on_replace: :delete)
@@ -38,8 +40,27 @@ defmodule Mango.Sales.Order do
   end
 
   def checkout_changeset(%Order{} = order, attrs) do
+    attrs =
+      attrs
+      |> Map.put(:comments, attrs["comments"])
+      |> Map.drop(["comments"])
+
     changeset(order, attrs)
     |> cast(attrs, [:customer_id, :customer_name, :residence_area, :email, :comments])
     |> validate_required([:customer_id, :customer_name, :residence_area, :email])
+  end
+
+  def list(customer) do
+    scope(customer)
+    |> Repo.all()
+  end
+
+  def show(customer, order_id) do
+    scope(customer)
+    |> Repo.get(order_id)
+  end
+
+  defp scope(customer) do
+    from(o in Order, where: o.customer_id == ^customer.id and o.status == "Confirmed")
   end
 end
