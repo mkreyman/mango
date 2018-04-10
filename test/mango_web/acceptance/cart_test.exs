@@ -44,6 +44,9 @@ defmodule MangoWeb.Acceptance.CartTest do
   test "add to cart" do
     navigate_to("/")
 
+    # assert Hound.Element.element?(find_element(:css, ".cart-count"))
+    # initial_cart_count = find_element(:css, ".cart-count") |> attribute_value("innerHTML") |> String.to_integer
+
     [product | _rest] = find_all_elements(:css, ".product")
 
     product_name =
@@ -60,10 +63,13 @@ defmodule MangoWeb.Acceptance.CartTest do
     find_within_element(product, :tag, "button")
     |> click
 
+    # cart_count = find_element(:css, ".cart-count") |> attribute_value("innerHTML") |> String.to_integer
+    # assert cart_count == initial_cart_count + 1
+
     message =
       find_element(:css, ".alert-success")
       |> visible_text()
 
-    # assert message =~ "Product added to cart - #{product_name}(#{pack_size}) x 2 qty"
+    assert message =~ "Product added to cart - #{product_name}(#{pack_size}) x 2 qty"
   end
 end

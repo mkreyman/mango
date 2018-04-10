@@ -172,10 +172,6 @@ defmodule MangoWeb.Acceptance.OrdersHistoryTest do
   test "customers can't view other customers' orders" do
     ## WHEN ##
     # the customer logs in
-    customer = Repo.get_by(Customer, email: "john@example.com") |> Repo.preload(:orders)
-    another_customer = Repo.get_by(Customer, email: "joanna@example.com") |> Repo.preload(:orders)
-    another_customer_order = another_customer.orders |> List.first()
-
     navigate_to("/login")
 
     form = find_element(:id, "session-form")
@@ -189,11 +185,13 @@ defmodule MangoWeb.Acceptance.OrdersHistoryTest do
     find_within_element(form, :tag, "button")
     |> click
 
-    # and then navigates to a particular order
+    # and then tries to navigate to another customer's order
+    another_customer = Repo.get_by(Customer, email: "joanna@example.com") |> Repo.preload(:orders)
+    another_customer_order = another_customer.orders |> List.first()
     navigate_to("/orders/#{another_customer_order.id}")
 
     ## THEN ##
-    # he is expected to see 404 :not_found
+    # he is expected to see 404 "Not Found" instead
     assert page_source() =~ "Not Found"
   end
 end
