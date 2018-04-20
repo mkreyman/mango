@@ -1,0 +1,4 @@
+#, elixir-format
+#: lib/mango_web/templates/page/index.html.eex:1
+msgid "Seasonal Products"
+msgstr "Saisonale Produkte"
