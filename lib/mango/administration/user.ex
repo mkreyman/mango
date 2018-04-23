@@ -2,11 +2,10 @@ defmodule Mango.Administration.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "users" do
-    field :email, :string
-    field :name, :string
-    field :phone, :string
+    field(:email, :string)
+    field(:name, :string)
+    field(:phone, :string)
 
     timestamps()
   end

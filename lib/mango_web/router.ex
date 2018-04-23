@@ -12,7 +12,7 @@ defmodule MangoWeb.Router do
   pipeline :frontend do
     plug(MangoWeb.Plugs.LoadCustomer)
     plug(MangoWeb.Plugs.FetchCart)
-    plug MangoWeb.Plugs.Locale
+    plug(MangoWeb.Plugs.Locale)
   end
 
   pipeline :api do
@@ -20,7 +20,7 @@ defmodule MangoWeb.Router do
   end
 
   pipeline :admin do
-    plug MangoWeb.Plugs.AdminLayout
+    plug(MangoWeb.Plugs.AdminLayout)
   end
 
   scope "/", MangoWeb do
@@ -50,15 +50,15 @@ defmodule MangoWeb.Router do
     get("/orders", OrderController, :index)
     get("/orders/:order_id", OrderController, :show)
 
-    resources "/tickets", TicketController, except: [:edit, :update, :delete]
+    resources("/tickets", TicketController, except: [:edit, :update, :delete])
   end
 
   scope "/admin", MangoWeb.Admin, as: :admin do
-    pipe_through [:browser, :admin]
+    pipe_through([:browser, :admin])
 
-    resources "/users", UserController
-    get "/login", SessionController, :new
-    post "/sendlink", SessionController, :send_link
-    get "/magiclink", SessionController, :create
+    resources("/users", UserController)
+    get("/login", SessionController, :new)
+    post("/sendlink", SessionController, :send_link)
+    get("/magiclink", SessionController, :create)
   end
 end

@@ -43,7 +43,7 @@ defmodule Mango.CRM do
   def list_customer_tickets(customer) do
     customer
     |> Ecto.assoc(:tickets)
-    |> Repo.all
+    |> Repo.all()
   end
 
   @doc """
@@ -78,7 +78,7 @@ defmodule Mango.CRM do
       {:error, %Ecto.Changeset{}}
 
   """
-  
+
   def create_customer_ticket(%Customer{} = customer, attrs \\ %{}) do
     build_customer_ticket(customer, attrs)
     |> Repo.insert()

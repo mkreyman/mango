@@ -24,8 +24,7 @@ defmodule MangoWeb.Acceptance.OrdersHistoryTest do
 
     apples = %Product{name: "Apple", price: 100, is_seasonal: true, pack_size: "1 kg"}
 
-    with {:ok, product} <-
-           Repo.insert(apples),
+    with {:ok, product} <- Repo.insert(apples),
          {:ok, customer} <- CRM.create_customer(john),
          {:ok, customer_cart} <-
            Sales.create_cart()
@@ -49,8 +48,7 @@ defmodule MangoWeb.Acceptance.OrdersHistoryTest do
 
     bananas = %Product{name: "Bananas", price: 10, is_seasonal: true, pack_size: "2 kg"}
 
-    with {:ok, product} <-
-           Repo.insert(bananas),
+    with {:ok, product} <- Repo.insert(bananas),
          {:ok, customer} <- CRM.create_customer(joanna),
          {:ok, customer_cart} <-
            Sales.create_cart()

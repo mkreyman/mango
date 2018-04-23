@@ -20,6 +20,7 @@ defmodule MangoWeb.OrderController do
         |> put_status(:not_found)
         |> put_view(MangoWeb.ErrorView)
         |> render("404.html")
+
       _ ->
         conn
         |> assign(:order, order)

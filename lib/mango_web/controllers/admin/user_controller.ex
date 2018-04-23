@@ -6,6 +6,7 @@ defmodule MangoWeb.Admin.UserController do
 
   def index(conn, _params) do
     users = Administration.list_users()
+
     conn
     |> put_layout("admin_app.html")
     |> render("index.html", users: users)
@@ -22,6 +23,7 @@ defmodule MangoWeb.Admin.UserController do
         conn
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: admin_user_path(conn, :show, user))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -46,6 +48,7 @@ defmodule MangoWeb.Admin.UserController do
         conn
         |> put_flash(:info, "User updated successfully.")
         |> redirect(to: admin_user_path(conn, :show, user))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
     end
