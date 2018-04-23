@@ -47,6 +47,12 @@ defmodule MangoWeb.Admin.SessionController do
     end
   end
 
+  def delete(conn, _) do
+    clear_session(conn)
+    |> put_flash(:info, "You have been logged out")
+    |> redirect(to: "/admin/login")
+  end
+
   # 10 mins
   @max_age 600
   defp verify_token(token) do
