@@ -14,6 +14,7 @@ defmodule Mango.Sales.Order do
     field(:customer_name, :string)
     field(:email, :string)
     field(:residence_area, :string)
+    # belongs_to(:customer, Mango.CRM.Customer)
 
     timestamps()
   end

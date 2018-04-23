@@ -68,6 +68,10 @@ defmodule MangoWeb.Router do
 
     # Routes that do require admin authentication
     resources("/users", UserController)
+    get("/orders", OrderController, :index)
+    get("/orders/:order_id", OrderController, :show)
+    get("/customers", CustomerController, :index)
+    get("/customers/:customer_id", CustomerController, :show)
     get("/logout", SessionController, :delete)
   end
 end

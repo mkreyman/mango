@@ -1,0 +1,15 @@
+<div class="col-md-8">
+  <table class="table order">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer ID</th>
+        <th>Products Ordered</th>
+        <th class="text-right">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render MangoWeb.Admin.OrderView, "order_card.html", conn: @conn, order: @order %>
+    </tbody>
+  </table>
+</div>
