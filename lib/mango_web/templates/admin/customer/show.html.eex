@@ -24,4 +24,4 @@
 
 </ul>
 
-<span><%= link "Back", to: admin_customer_path(@conn, :index) %></span>
+<span><%= link "Customers", to: admin_customer_path(@conn, :index) %></span>

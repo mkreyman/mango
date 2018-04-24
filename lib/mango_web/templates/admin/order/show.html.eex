@@ -1,15 +1,36 @@
+<h2 class="page-title">Order Details</h1>
 <div class="col-md-8">
   <table class="table order">
     <thead>
       <tr>
-        <th>Order ID</th>
         <th>Customer ID</th>
         <th>Products Ordered</th>
         <th class="text-right">Total</th>
       </tr>
     </thead>
     <tbody>
-      <%= render MangoWeb.Admin.OrderView, "order_card.html", conn: @conn, order: @order %>
+      <tr>
+        <td>
+          <div class="order-customer">
+            <%= link @order.customer_id, to: admin_customer_path(@conn, :show, @order.customer_id) %>    
+          </div>
+        </td>
+        <td>
+          <div class="order-items">
+            <%= Enum.map(@order.line_items, fn item -> item.product_name end) |> Enum.join(", ") %>
+          </div>
+        </td>
+        <td class="text-right">
+          <div class="order-total">
+            <%= @order.total %>
+          </div>
+        </td>
+      </tr>
     </tbody>
   </table>
+
+  <span><%= link "Orders", to: admin_order_path(@conn, :index) %></span>
 </div>
+
+
+
