@@ -4,7 +4,7 @@ defmodule Mango.CRMTest do
   alias Mango.CRM.Customer
 
   test "build_customer/0 returns a customer changeset" do
-    assert %Ecto.Changeset{data: %Customer{}} = CRM.build_customer()
+    assert %Ecto.Changeset{data: %Customer{}} = CRM.build_customer
   end
 
   test "build_customer/1 returns a customer changeset with values applied" do
@@ -21,7 +21,6 @@ defmodule Mango.CRMTest do
       "residence_area" => "Area 1",
       "phone" => "1111"
     }
-
     assert {:ok, customer} = CRM.create_customer(valid_attrs)
     assert Comeonin.Bcrypt.checkpw(valid_attrs["password"], customer.password_hash)
   end
@@ -39,7 +38,6 @@ defmodule Mango.CRMTest do
       "residence_area" => "Area 1",
       "phone" => "1111"
     }
-
     {:ok, customer1} = CRM.create_customer(valid_attrs)
     customer2 = CRM.get_customer_by_email("john@example.com")
     assert customer1.id == customer2.id
@@ -53,7 +51,6 @@ defmodule Mango.CRMTest do
       "residence_area" => "Area 1",
       "phone" => "1111"
     }
-
     {:ok, customer1} = CRM.create_customer(valid_attrs)
     customer2 = CRM.get_customer_by_credentials(valid_attrs)
     assert customer1.id == customer2.id

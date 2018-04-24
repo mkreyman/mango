@@ -10,8 +10,8 @@ defmodule MangoWeb.Acceptance.HomepageTest do
     # Where Apple being the only seasonal product
     alias Mango.Repo
     alias Mango.Catalog.Product
-    Repo.insert(%Product{name: "Tomato", price: 50, is_seasonal: false})
-    Repo.insert(%Product{name: "Apple", price: 100, is_seasonal: true})
+    Repo.insert %Product{name: "Tomato", price: 50, is_seasonal: false}
+    Repo.insert %Product{name: "Apple", price: 100, is_seasonal: true}
     :ok
   end
 
@@ -41,4 +41,5 @@ defmodule MangoWeb.Acceptance.HomepageTest do
     # And I expect that Tomato is not present on screen.
     refute page_source() =~ "Tomato"
   end
+
 end

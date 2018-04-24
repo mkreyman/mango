@@ -8,7 +8,6 @@ defmodule MangoWeb.Acceptance.SessionTest do
     ## GIVEN ##
     # There is a valid registered user
     alias Mango.CRM
-
     valid_attrs = %{
       "name" => "John",
       "email" => "john@example.com",
@@ -16,7 +15,6 @@ defmodule MangoWeb.Acceptance.SessionTest do
       "residence_area" => "Area 1",
       "phone" => "1111"
     }
-
     {:ok, _} = CRM.create_customer(valid_attrs)
     :ok
   end
@@ -26,7 +24,6 @@ defmodule MangoWeb.Acceptance.SessionTest do
     navigate_to("/login")
 
     form = find_element(:id, "session-form")
-
     find_within_element(form, :name, "session[email]")
     |> fill_field("john@example.com")
 
@@ -38,10 +35,8 @@ defmodule MangoWeb.Acceptance.SessionTest do
 
     ## THEN ##
     assert current_path() == "/"
-
-    message =
-      find_element(:class, "alert-info")
-      |> visible_text()
+    message = find_element(:class, "alert-info")
+              |> visible_text()
 
     assert message == "Login successful"
   end
