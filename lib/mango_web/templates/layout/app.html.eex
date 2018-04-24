@@ -12,7 +12,6 @@
   </head>
 
   <body>
-    <!-- Pass `customer` variable to partial -->
     <%= render "app_nav.html", conn: @conn, customer: @current_customer %>
     <div class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

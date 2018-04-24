@@ -1,11 +1,9 @@
 defmodule MangoWeb.CategoryView do
   use MangoWeb, :view
 
-  def title_case(string) do
-    string
-    |> String.downcase()
-    |> String.split()
-    |> Enum.map(&String.capitalize/1)
-    |> Enum.join(" ")
+  def title_case(name) do
+    name
+    |> String.downcase
+    |> String.capitalize
   end
 end

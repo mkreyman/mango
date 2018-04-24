@@ -1,25 +1,32 @@
-<h2 class="page-title">Listing Orders</h1>
-<div class="col-md-8">
-  <table class="table order">
-    <thead>
-      <tr>
-        <th>Customer ID</th>
-        <th>Products Ordered</th>
-        <th class="text-right">Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= for order <- @orders do %>
-        <tr>
-          <td><%= link order.customer_id, to: admin_customer_path(@conn, :show, order.customer_id) %></td>
-          <td><%= Enum.map(order.line_items, fn item -> item.product_name end) |> Enum.join(", ") %></td>
-          <td class="text-right"><%= order.total %></td>
+<h2>Orders</h2>
 
-          <td class="text-right">
-            <span><%= link "Show", to: admin_order_path(@conn, :show, order.id), class: "btn btn-default btn-xs" %></span>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Customer</th>
+      <th>Residence Area</th>
+      <th>Order status</th>
+      <th>Total</th>
+      <th>Comments</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for order <- @orders do %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.customer_name %></td>
+      <td><%= order.residence_area %></td>
+      <td><%= order.status %></td>
+      <td><%= order.total %></td>
+      <td><%= order.comments %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: admin_order_path(@conn, :show, order), class: "btn btn-default btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

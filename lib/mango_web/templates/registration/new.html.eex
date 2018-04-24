@@ -5,7 +5,7 @@
     <p>Oops, something went wrong! Please check the errors below.</p>
   </div>
   <% end %>
-  
+
   <div class="form-group">
     <%= label f, :name, class: "control-label" %>
     <%= text_input f, :name, class: "form-control" %>
@@ -25,7 +25,8 @@
   </div>
 
   <div class="form-group">
-    <%= select f, :residence_area, @residence_areas, prompt: "Choose your residence area", class: "form-control" %>
+    <%= label f, :residence_area, "Area of Residence", class: "control-label" %>
+    <%= select f, :residence_area, @residence_areas, prompt: "Choose your residence area", class: "form-control" %>    
     <%= error_tag f, :residence_area %>
   </div>
 
