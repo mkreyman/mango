@@ -10,8 +10,8 @@ defmodule MangoWeb.Acceptance.CategoryPageTest do
     # categorized under `fruits` and `vegetables` respectively
     alias Mango.Repo
     alias Mango.Catalog.Product
-    Repo.insert %Product{name: "Tomato", price: 50, is_seasonal: false, category: "vegetables"}
-    Repo.insert %Product{name: "Apple", price: 100, is_seasonal: true, category: "fruits"}
+    Repo.insert(%Product{name: "Tomato", price: 50, is_seasonal: false, category: "vegetables"})
+    Repo.insert(%Product{name: "Apple", price: 100, is_seasonal: true, category: "fruits"})
     :ok
   end
 
@@ -60,5 +60,4 @@ defmodule MangoWeb.Acceptance.CategoryPageTest do
     # And I expect that Apple is not present on screen.
     refute page_source() =~ "Apple"
   end
-
 end

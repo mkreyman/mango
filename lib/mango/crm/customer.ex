@@ -11,7 +11,6 @@ defmodule Mango.CRM.Customer do
     field(:password_hash, :string)
     field(:phone, :string)
     field(:residence_area, :string)
-    has_many(:orders, Mango.Sales.Order, on_replace: :delete)
     has_many(:tickets, Ticket)
 
     timestamps()
