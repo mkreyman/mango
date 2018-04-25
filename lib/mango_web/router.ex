@@ -78,5 +78,7 @@ defmodule MangoWeb.Router do
     get("/customers/:customer_id", CustomerController, :show)
 
     get("/logout", SessionController, :delete)
+
+    get "/", DashboardController, :show
   end
 end
