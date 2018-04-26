@@ -79,6 +79,6 @@ defmodule MangoWeb.Router do
 
     get("/logout", SessionController, :delete)
 
-    get "/", DashboardController, :show
+    get("/", DashboardController, :show)
   end
 end

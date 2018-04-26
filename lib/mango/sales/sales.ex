@@ -39,10 +39,24 @@ defmodule Mango.Sales do
   end
 
   def confirm_order(%Order{} = order, attrs) do
-    attrs = Map.put(attrs, :status, "Confirmed")
+    attrs =
+      attrs
+      |> atomize_keys()
+      |> Map.put(:status, "Confirmed")
 
     order
     |> Order.checkout_changeset(attrs)
     |> Repo.update()
   end
+
+  defp atomize_keys(map = %{}) do
+    map
+    |> Enum.map(fn
+      {k, v} when is_atom(k) -> {k, atomize_keys(v)}
+      {k, v} -> {String.to_atom(k), atomize_keys(v)}
+    end)
+    |> Enum.into(%{})
+  end
+
+  defp atomize_keys(not_a_map), do: not_a_map
 end

@@ -40,11 +40,6 @@ defmodule Mango.Sales.Order do
   end
 
   def checkout_changeset(%Order{} = order, attrs) do
-    attrs =
-      attrs
-      |> Map.put(:comments, attrs["comments"])
-      |> Map.drop(["comments"])
-
     changeset(order, attrs)
     |> cast(attrs, [:customer_id, :customer_name, :residence_area, :email, :comments])
     |> validate_required([:customer_id, :customer_name, :residence_area, :email])
