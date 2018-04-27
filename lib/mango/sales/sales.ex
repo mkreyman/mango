@@ -49,6 +49,16 @@ defmodule Mango.Sales do
     |> Repo.update()
   end
 
+  def pos_sale_complete(%Order{} = order) do
+    order
+    |> Order.changeset(%{status: "POS Sale"})
+    |> Repo.update()
+  end
+
+  def get_order(nil), do: nil
+  def get_order(""), do: nil
+  def get_order(id), do: Repo.get(Order, id)
+
   defp atomize_keys(map = %{}) do
     map
     |> Enum.map(fn
